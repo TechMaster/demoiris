@@ -72,3 +72,46 @@ if resp, err := retryClient.Get("http://khongtontai.com/"); err != nil { //Kiể
   }
 }
 ```
+
+## View Template Engine
+
+Xem [template/base.go](app/template/base.go)
+
+Cấu hình view template engine, Blocks (nâng cấp của thư viện HTML)
+```go
+func InitViewEngine(app *iris.Application) {
+	viewEngine := iris.Blocks("./views", ".html")
+	viewEngine.Layout("default")
+	app.RegisterView(viewEngine)
+}
+```
+Cấu trúc thư mực view template
+```
+view
+├── layouts  --> Các layout template để chứa các template khác
+│   └── default.html
+├── partials  --> Chứa các một thành phần tái sử dụng của template
+│   ├── footer.html
+│   ├── header.html
+│   └── menu.html
+├── counter.html
+├── email.html
+├── error.html
+└── index.html
+```
+
+Đổ dữ liệu vào ViewTemplate
+```go
+func showHomePage(ctx iris.Context) {
+	ctx.ViewLayout("default")
+	viewData := iris.Map{ //iris.Map tương đương map[string]interface{}
+		"Title":   "Siêu to khổng lồ",              //--> layouts/default.html -> {{.Title}}
+		"address": "Tầng 12A, Viwaseen, 48 Tố Hữu", //--> partials/footer.html --> {{.address}}
+		"UserInfo": iris.Map{ //--> partials/menu.html -->
+			"Name":  "Cường",
+			"Email": "cuong@techmaster.vn",
+		},
+	}
+	logger.CheckErr(ctx, ctx.View("index", viewData))
+}
+```
