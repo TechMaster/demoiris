@@ -1,0 +1,12 @@
+2021 08 09-20:38:25 - Failed to connect to Postgresql
+	controller.funcD | /Volumes/CODE/demoiris/controller/json_err.go | 36
+	controller.demoError.JSONErr | /Volumes/CODE/demoiris/controller/json_err.go | 18
+	context.(*Context).Do | /Users/techmaster/golang/pkg/mod/github.com/kataras/iris/v12@v12.2.0-alpha2.0.20210717090056-b2cc3a287149/context/context.go | 490
+{"db":"shopdb","host":"192.168.1.1","port":5432}
+
+2021 08 09-23:39:56 - Failed to connect to Postgresql
+	controller.funcD | /Volumes/CODE/demoiris/app/controller/err_json.go | 36
+	controller.demoError.JSONErr | /Volumes/CODE/demoiris/app/controller/err_json.go | 18
+	context.(*Context).Do | /Users/techmaster/golang/pkg/mod/github.com/kataras/iris/v12@v12.2.0-alpha2.0.20210717090056-b2cc3a287149/context/context.go | 490
+{"db":"shopdb","host":"192.168.1.1","port":5432}
+

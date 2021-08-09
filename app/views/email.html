@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warning Demo</title>
+  <script src="/js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <p>Cảnh báo warning chỉ áp dụng với những lỗi nhẹ do người dùng nhập sai dữ liệu, email không hợp lệ, tên bị trống</p>
+
+  Validate Email: <input type="text" id="email" name="email"><br>
+  <button onclick="sendEmail();">Submit email</button>
+  <p id="result"></p>
+  <script>
+    function sendEmail() {
+      $.post("/err/submitemail", { email: $("#email").val() })
+        .done(data => {
+          $("#result").html(data);
+        });
+    }
+
+  </script>
+</body>
+
+</html>
