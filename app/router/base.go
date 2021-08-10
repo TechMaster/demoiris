@@ -16,7 +16,7 @@ func route_error(app *iris.Application) {
 	{
 		v1.Get("/serialcall", controller.Err.SerialCall)
 		v1.Get("/panic", controller.Err.PanicCall)
-		v1.Get("/jsonerr", controller.Err.JSONErr)
+		v1.Get("/errdata", controller.Err.ErrWithData)
 		v1.Get("/checkerr", controller.Err.DemoCheckError)
 		v1.Get("/inputmail", controller.Err.ShowEmailForm)
 		v1.Post("/submitemail", controller.Err.ProcessEmailForm)
@@ -40,5 +40,10 @@ func route_error(app *iris.Application) {
 		v3.Get("/redirect", controller.RedirectCheckCtx)
 		v3.Get("/chainhandlers", controller.Handler1, controller.Handler2, controller.Handler3)
 		v3.Get("/render_markdown", controller.RenderMarkDown)
+		v3.Get("/addhandler", controller.DemoAddHandler, controller.Handler4)
+		v3.Get("/sethandler", controller.SetHandler, controller.Handler1, controller.Handler2, controller.Handler3)
+		v3.Get("/getstopwitherror", controller.GetStopWithError)
+		v3.Post("/poststopwitherror", controller.PostStopWithError)
+		v3.Get("/longasync", controller.LongAsync)
 	}
 }

@@ -19,8 +19,12 @@
     function sendEmail() {
       $.post("/err/submitemail", { email: $("#email").val() })
         .done(data => {
-          $("#result").html(data);
-        });
+          $("#result").html(data).css('color', 'black');
+        })
+        .fail(data => {
+          console.log(data);          
+          $("#result").html(data.responseJSON).css('color', 'red');
+        })
     }
 
   </script>
