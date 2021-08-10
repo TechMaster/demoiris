@@ -24,6 +24,7 @@ func (d demoError) CallAPI(ctx iris.Context) {
 			logger.Log(ctx, eris.NewFrom(err))
 		}
 	}
+
 }
 
 func (d demoError) RetryCall(ctx iris.Context) {

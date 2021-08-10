@@ -1,0 +1,41 @@
+<ul>
+  <li><a href="/ctx/normalget?q='ox-13'">Get request</a></li>
+  <li><a href="javascript:sendGetRequest();">AJAX Get request</a></li>
+  <li><a href="javascript:sendPostRequest();">AJAX Post request</a></li>
+  <li><a href="/ctx/redirect">Redirect quay lại get check ctx</a></li>
+</ul>
+<pre id="result"></pre>
+<script>
+  function sendGetRequest() {
+    $.get("/ctx/ajaxget")
+        .done(data => { 
+          var str = JSON.stringify(data, undefined, 2);         
+          $("#result").html(syntaxHighlight(str));
+        });
+  }
+  function sendPostRequest() {
+    $.get("/ctx/ajaxpost", {"key1": "value1", "key2": 100})
+        .done(data => {
+          var str = JSON.stringify(data, undefined, 2);         
+          $("#result").html(syntaxHighlight(str));
+        });
+  }
+  function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+</script>

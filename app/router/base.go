@@ -2,27 +2,13 @@ package router
 
 import (
 	"demoiris/controller"
-	"demoiris/logger"
 
 	"github.com/kataras/iris/v12"
 )
 
 func RegisterRoutes(app *iris.Application) {
-	app.Get("/", showHomePage)
+	app.Get("/", controller.ShowHomePage)
 	route_error(app)
-}
-
-func showHomePage(ctx iris.Context) {
-	ctx.ViewLayout("default")
-	viewData := iris.Map{ //iris.Map tương đương map[string]interface{}
-		"Title":   "Siêu to khổng lồ",              //--> layouts/default.html -> {{.Title}}
-		"address": "Tầng 12A, Viwaseen, 48 Tố Hữu", //--> partials/footer.html --> {{.address}}
-		"UserInfo": iris.Map{ //--> partials/menu.html -->
-			"Name":  "Cường",
-			"Email": "cuong@techmaster.vn",
-		},
-	}
-	logger.CheckErr(ctx, ctx.View("index", viewData))
 }
 
 func route_error(app *iris.Application) {
@@ -42,5 +28,17 @@ func route_error(app *iris.Application) {
 	v2 := app.Party("/cooksess")
 	{
 		v2.Get("/counter/{action}", controller.Counter)
+	}
+
+	v3 := app.Party("/ctx")
+	{
+		v3.Get("/checkctxpage", controller.ShowCheckCtx)
+		v3.Get("/checkctx", controller.CheckTypeOfCtx)
+		v3.Get("/normalget", controller.CheckTypeOfCtx)
+		v3.Get("/ajaxget", controller.CheckTypeOfCtx)
+		v3.Get("/ajaxpost", controller.CheckTypeOfCtx)
+		v3.Get("/redirect", controller.RedirectCheckCtx)
+		v3.Get("/chainhandlers", controller.Handler1, controller.Handler2, controller.Handler3)
+		v3.Get("/render_markdown", controller.RenderMarkDown)
 	}
 }
