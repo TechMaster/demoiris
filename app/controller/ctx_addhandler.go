@@ -18,5 +18,5 @@ func Handler4(ctx iris.Context) {
 
 func adHocHandler(ctx iris.Context) {
 	ctx.ViewData("keyFinal", "adHocHandler")
-	ctx.JSON(ctx.GetViewData())
+	_, _ = ctx.JSON(ctx.GetViewData())
 }

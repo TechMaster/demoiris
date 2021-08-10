@@ -46,4 +46,9 @@ func route_error(app *iris.Application) {
 		v3.Post("/poststopwitherror", controller.PostStopWithError)
 		v3.Get("/longasync", controller.LongAsync)
 	}
+
+	v4 := app.Party("/email")
+	{
+		v4.Get("/simple", controller.SendSimpleEmail)
+	}
 }

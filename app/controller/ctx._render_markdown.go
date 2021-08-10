@@ -12,7 +12,7 @@ func RenderMarkDown(ctx iris.Context) {
 	if bytes, err := ioutil.ReadFile("../ReadMe.md"); err != nil {
 		logger.Log(ctx, eris.NewFromMsg(err, "Cannot open ReadMe.md"))
 	} else {
-		ctx.Markdown(bytes)
+		_, _ = ctx.Markdown(bytes)
 	}
 
 }

@@ -14,5 +14,5 @@ func Handler2(ctx iris.Context) {
 
 func Handler3(ctx iris.Context) {
 	ctx.ViewData("key3", "Value from func Handler3(ctx iris.Context)")
-	ctx.JSON(ctx.GetViewData())
+	_, _ = ctx.JSON(ctx.GetViewData())
 }

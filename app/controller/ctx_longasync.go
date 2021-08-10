@@ -16,5 +16,5 @@ func LongAsync(ctx iris.Context) {
 		// note that you are using the copied context "ctxCopy", IMPORTANT
 		log.Printf("Done! in path: %s", ctxCopy.Path())
 	}()
-	ctx.WriteString("Trang trả về trước khi long task hoàn thành")
+	_, _ = ctx.WriteString("Trang trả về trước khi long task hoàn thành")
 }

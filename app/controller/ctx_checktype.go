@@ -10,7 +10,7 @@ import (
 
 func ShowCheckCtx(ctx iris.Context) {
 	ctx.ViewLayout("default")
-	ctx.View("checkctx")
+	_ = ctx.View("checkctx")
 }
 func CheckTypeOfCtx(ctx iris.Context) {
 	data := iris.Map{
@@ -29,10 +29,10 @@ func CheckTypeOfCtx(ctx iris.Context) {
 		"StatusCode":     ctx.GetStatusCode(),
 	}
 	if ctx.IsAjax() {
-		ctx.JSON(data)
+		_, _ = ctx.JSON(data)
 	} else {
 		if dataStr, err := json.Marshal(data); err == nil {
-			ctx.WriteString(string(dataStr))
+			_, _ = ctx.WriteString(string(dataStr))
 		} else {
 			logger.Log(ctx, eris.NewFrom(err))
 		}
