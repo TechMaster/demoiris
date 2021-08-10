@@ -9,7 +9,7 @@ import (
 func ShowHomePage(ctx iris.Context) {
 	ctx.ViewLayout("default")
 	viewData := iris.Map{ //iris.Map tương đương map[string]interface{}
-		"Title":   "Demo Iris V12 core features",              //--> layouts/default.html -> {{.Title}}
+		"Title":   "Siêu to khổng lồ",              //--> layouts/default.html -> {{.Title}}
 		"address": "Tầng 12A, Viwaseen, 48 Tố Hữu", //--> partials/footer.html --> {{.address}}
 		"UserInfo": iris.Map{ //--> partials/menu.html -->
 			"Name":  "Cường",
