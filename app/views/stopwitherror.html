@@ -1,0 +1,30 @@
+<ul>
+  <li><a href="javascript: PostValidForm();">Post Valid Form</a></li>
+  <li><a href="javascript: PostInvalidForm();">Post Invalid Form</a></li>
+</ul>
+<pre id="result"></pre>
+<script>
+  function PostValidForm() {
+    $.post("/ctx/poststopwitherror?id=2&page=5", { name: "cuong", message: "I love you" })
+      .done(data => {
+        displayResult(data);
+      })
+      .fail(data => {
+        displayResult(data);
+      });
+  }
+  function PostInvalidForm() {
+    $.post("/ctx/poststopwitherror?id=abc&page=5", { name: "cuong", message: "I love you" })
+      .done(data => {
+        displayResult(data);
+      })
+      .fail(data => {
+        displayResult(data);
+      });
+  }
+
+  function displayResult(d){
+    let str = JSON.stringify(d, undefined, 2);
+    $("#result").html(syntaxHighlight(str));
+  }
+</script>

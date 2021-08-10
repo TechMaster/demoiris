@@ -6,6 +6,7 @@ import (
 
 	"demoiris/eris"
 
+	"github.com/goccy/go-json"
 	"github.com/kataras/iris/v12"
 )
 
@@ -20,12 +21,11 @@ func InitErrLog(logFolder ...string) *os.File {
 func Log(ctx iris.Context, err error) {
 	switch e := err.(type) {
 	case *eris.Error:
-
 		if e.ErrType > eris.WARNING { //Chỉ log ra console hoặc file
 			logErisError(e)
 		}
 
-		if e.JSON { //Có trả về báo lỗi dạng JSON cho REST API request không?
+		if ctx.IsAjax() { //Có trả về báo lỗi dạng JSON cho REST API request không?
 			if e.Data == nil { //không có dữ liệu đi kèm thì chỉ cần in thông báo lỗi
 				ctx.StatusCode(e.Code)
 				_, _ = ctx.JSON(e.Error())
@@ -39,13 +39,37 @@ func Log(ctx iris.Context, err error) {
 			}
 			return //Xuất ra JSON rồi thì không hiển thị Error Page nữa
 		}
-	default:
-		fmt.Println(err.Error())
-	}
 
-	_ = ctx.View("error", iris.Map{
-		"ErrorMsg": err.Error(),
-	})
+		// ctx.IsAjax() == false, không phải REST
+		if e.Data == nil {
+			_ = ctx.View("error", iris.Map{
+				"ErrorMsg": e.Error(),
+			})
+		} else {
+			if bytes, err := json.Marshal(e.Data); err == nil {
+				_ = ctx.View("error", iris.Map{
+					"ErrorMsg": e.Error(),
+					"Data":     string(bytes),
+				})
+			} else {
+				_ = ctx.View("error", iris.Map{
+					"ErrorMsg": e.Error(),
+				})
+			}
+
+		}
+
+	default: //Lỗi thông thường
+		fmt.Println(err.Error()) //In ra console
+		if ctx.IsAjax() {        //Trả về JSON
+			ctx.StatusCode(iris.StatusInternalServerError)
+			_, _ = ctx.JSON(err.Error())
+		} else {
+			_ = ctx.View("error", iris.Map{
+				"ErrorMsg": err.Error(),
+			})
+		}
+	}
 }
 
 //Kiểm tra xem có lỗi thì báo lỗi

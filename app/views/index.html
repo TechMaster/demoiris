@@ -2,7 +2,7 @@
 <ul>
   <li><a href="/err/serialcall">Lỗi từ hàm con</a></li>
   <li><a href="/err/panic">Lỗi nghiêm trọng</a></li>
-  <li><a href="/err/jsonerr">Lỗi kèm thông tin bổ xung</a></li>
+  <li><a href="/err/errdata">Lỗi trả về kèm thông tin bổ xung</a></li>
   <li><a href="/err/checkerr">Hàm tiện ích check error</a></li>
   <li><a href="/err/inputmail">Validate Email qua AJAX - JSON</a></li>
   <li><a href="/err/warning">Cảnh báo không ghi console hay file, chỉ trả về client</a></li>
@@ -23,7 +23,11 @@
   <li><a href="/ctx/checkctxpage">Kiểm trả request đến</a></li>
   <li><a href="/ctx/chainhandlers">Nối tiếp các handlers: Handler1, Handler2, Handler3</a></li>
   <li><a href="/ctx/render_markdown">Render Markdown to HTML</a></li>
-  <!-- <li><a href="/ctx/passdata">Truyền dữ liệu qua context</a></li>
+  <li><a href="/ctx/addhandler">AddHandler: Thêm hàm vào cuối danh sách handlers</a></li>
+  <li><a href="/ctx/sethandler">SetHandler: Thay toàn bộ danh sách handlers</a></li>
+  <li><a href="/ctx/getstopwitherror">ctx.StopWithError</a></li>
+  <li><a href="/ctx/longasync">Gọi hàm long async</a></li>
+ <!-- <li><a href="/ctx/passdata">Truyền dữ liệu qua context</a></li>
   <li><a href="/ctx/stopwitherror">Dừng request khi có lỗi</a></li>
   <li><a href="/ctx/fallbackview">Fallback View</a></li>
   <li><a href="/ctx/setfunc">Cài cắm function</a></li>

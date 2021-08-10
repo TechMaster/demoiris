@@ -14,10 +14,10 @@ func (d demoError) ShowEmailForm(ctx iris.Context) {
 
 func (d demoError) ProcessEmailForm(ctx iris.Context) {
 	email := ctx.PostValue("email")
-	if !govalidator.IsEmail(email) {
-		_, _ = ctx.JSON("Email is invalid")
+	if govalidator.IsEmail(email) {
+		_, _ = ctx.JSON("Email is valid")
 	} else {
-		_, _ = ctx.JSON("Success")
+		logger.Log(ctx, eris.Warning("Email is invalid").StatusCode(iris.StatusBadRequest))
 	}
 }
 
