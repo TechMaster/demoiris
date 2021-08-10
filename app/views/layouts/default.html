@@ -6,40 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .Title }}{{ .Title }}{{ else }}Welcome to Techmaster{{ end }}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <script src="/js/jquery-3.6.0.min.js"></script>
   <style>
-    pre {
-      outline: 1px solid #ccc;
-      padding: 5px;
-      margin: 5px;
+    main {
+      min-height: calc(100vh - 120px);
+      padding-top: 1.3rem;
     }
 
-    .string {
-      color: green;
+    a:hover {
+      text-decoration: none;
     }
 
-    .number {
-      color: darkorange;
-    }
-
-    .boolean {
-      color: blue;
-    }
-
-    .null {
-      color: magenta;
-    }
-
-    .key {
-      color: red;
+    h2 {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--secondary);
     }
   </style>
 </head>
 
 <body>
-  <footer>{{ partial "partials/menu" .UserInfo}}</footer>
-  {{ template "content" . }}
+  <header>{{ partial "partials/header" .UserInfo}}</header>
+  <main class="container">
+    {{ template "content" . }}
+  </main>
   <footer>{{ partial "partials/footer" .}}</footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </html>
