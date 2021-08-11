@@ -1,0 +1,11 @@
+2021 08 11-09:45:17 - Hard Disk is full
+	controller.demoError.PanicCall | /Volumes/CODE/demoiris/app/controller/err_serial_call.go | 30
+	context.(*Context).Do | /Users/techmaster/golang/pkg/mod/github.com/kataras/iris/v12@v12.2.0-alpha2.0.20210717090056-b2cc3a287149/context/context.go | 490
+	router.(*routerHandler).HandleRequest | /Users/techmaster/golang/pkg/mod/github.com/kataras/iris/v12@v12.2.0-alpha2.0.20210717090056-b2cc3a287149/core/router/handler.go | 440
+
+2021 08 11-09:45:19 - Failed to connect to Postgresql
+	controller.funcD | /Volumes/CODE/demoiris/app/controller/err_with_data.go | 31
+	controller.demoError.ErrWithData | /Volumes/CODE/demoiris/app/controller/err_with_data.go | 13
+	context.(*Context).Do | /Users/techmaster/golang/pkg/mod/github.com/kataras/iris/v12@v12.2.0-alpha2.0.20210717090056-b2cc3a287149/context/context.go | 490
+{"db":"shopdb","host":"192.168.1.1","port":5432}
+
